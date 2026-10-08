@@ -2,15 +2,13 @@ const { ipcRenderer } = require("electron");
 
 class DrawingApp {
     constructor() {
-        this.initializeCanvas();
-        this.initializeColorPicker();
-
         this.startPoint = null;
         this.isDrawing = false;
 
         this.currentColor = "#000000";
-        this.ctx.lineWidth = 4;
 
+        this.initializeCanvas();
+        this.initializeColorPicker();
         this.setupEventListeners();
     }
 
@@ -20,6 +18,7 @@ class DrawingApp {
         this.previewCanvas = document.getElementById("previewCanvas");
         this.previewCtx = this.previewCanvas.getContext("2d");
         this.previewCtx.setLineDash([5, 5]);
+        this.ctx.lineWidth = 4;
     }
 
     initializeColorPicker() {
