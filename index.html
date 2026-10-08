@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Drawing App - Part 4</title>
+        <style>
+            body {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                background-color: beige;
+            }
+
+            #drawingCanvas {
+                background-color: white;
+            }
+
+            .canvasContainer {
+                position: relative;
+            }
+
+            #previewCanvas {
+                display: block;
+                position: absolute;
+                top: 0;
+                pointer-events: none;
+            }
+
+            #colorPickerContainer {
+                width: 40px;
+                height: 40px;
+                background-color: #000000;
+            }
+        </style>
+    </head>
+    <body>
+        <div> <!-- controls -->
+            <div id="colorPickerContainer"></div>
+            <button id="clearBtn">Clear</button>
+            <button id="saveBtn">Save</button>
+            <button id="loadBtn">Load Image</button>
+        </div>
+        <div class="canvasContainer">
+            <canvas id="drawingCanvas" width="400" height="300"></canvas>
+            <canvas id="previewCanvas" width="400" height="300"></canvas>
+        </div>
+        <script src="node_modules\vanilla-picker\dist\vanilla-picker.min.js"></script>
+        <script src="renderer.js"></script>
+    </body>
+</html>
