@@ -45,7 +45,7 @@ class DrawingApp {
             this.startDrawing(e);
         });
 
-        this.canvas.addEventListener("mousemove", (e) => {
+        document.addEventListener("mousemove", (e) => {
             this.updatePreview(e);
         });
 
@@ -84,8 +84,16 @@ class DrawingApp {
         console.log("Image saved");
     }
 
+    getCanvasPoint(event) {
+        const rectangle = this.canvas.getBoundingClientRect();
+        return {
+            x: (event.clientX - rectangle.left) * (this.canvas.width / rectangle.width),
+            y: (event.clientY - rectangle.top) * (this.canvas.height / rectangle.height)
+        };
+    }
+
     startDrawing(event) {
-        this.startPoint = { x: event.offsetX, y: event.offsetY };
+        this.startPoint = this.getCanvasPoint(event);
         this.isDrawing = true;
     }
 
@@ -93,7 +101,7 @@ class DrawingApp {
         this.previewCtx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         if (!this.isDrawing) return;
 
-        const point = { x: event.offsetX, y: event.offsetY };
+        const point = this.getCanvasPoint(event);
 
         this.previewCtx.beginPath();
         this.previewCtx.moveTo(this.startPoint.x, this.startPoint.y);
@@ -102,7 +110,10 @@ class DrawingApp {
     }
 
     finishDrawing(event) {
-        const endPoint = { x: event.offsetX, y: event.offsetY };
+        if (!this.isDrawing) return;
+
+        const endPoint = this.getCanvasPoint(event);
+        this.previewCtx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
         this.ctx.beginPath();
 		this.ctx.moveTo(this.startPoint.x, this.startPoint.y);
