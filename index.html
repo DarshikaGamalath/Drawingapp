@@ -36,14 +36,16 @@
     </head>
     <body>
         <div> <!-- controls -->
-            <div id="colorPickerContainer"></div>
             <button id="clearBtn">Clear</button>
             <button id="saveBtn">Save</button>
             <button id="loadBtn">Load Image</button>
         </div>
-        <div class="canvasContainer">
-            <canvas id="drawingCanvas" width="400" height="300"></canvas>
-            <canvas id="previewCanvas" width="400" height="300"></canvas>
+        <div style="display:flex;">
+            <div class="canvasContainer">
+                <canvas id="drawingCanvas" width="400" height="300"></canvas>
+                <canvas id="previewCanvas" width="400" height="300"></canvas>
+            </div>
+            <div id="colorPickerContainer"></div>
         </div>
         <script src="node_modules\vanilla-picker\dist\vanilla-picker.min.js"></script>
         <script src="renderer.js"></script>
